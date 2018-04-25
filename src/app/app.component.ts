@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'gw-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'gw-application',
+    templateUrl: './app.component.html'
 })
+
 export class AppComponent {
-  title = 'gw';
+
 }
