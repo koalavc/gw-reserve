@@ -9,4 +9,5 @@ if (environment.production) {
   enableProdMode();
 }
 
+// Fires the angular app. starts the car
 platformBrowserDynamic().bootstrapModule(AppModule);
