@@ -30,10 +30,6 @@ export class NavigationComponent implements OnInit{
         {
             label: 'Sim City',
             url: '/simcity'
-        },
-        {
-            label: '',
-            url:'/'
         }]
     }
 
