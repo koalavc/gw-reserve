@@ -2,7 +2,7 @@
     <ul>
         <div class="list-wrapper">
             <li *ngFor="let menuItem of menuItems">
-                <a href='{{menuItem.url}}'>{{ menuItem.label }}</a>
+                <a [routerLink]='[menuItem.url]'>{{ menuItem.label }}</a>
             </li>
         </div>
     </ul>

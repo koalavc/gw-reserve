@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { INavigationItem } from "./../../interfaces/INavigationItem";
 
 @Component({
@@ -9,28 +9,32 @@ import { INavigationItem } from "./../../interfaces/INavigationItem";
     ]
 })
 
-export class NavigationComponent implements OnInit, OnDestroy{
+export class NavigationComponent implements OnInit{
     // public navigationComp: string = 'Welcome to the navigation component';
     public menuItems: INavigationItem[];
 
     ngOnInit(): void {
         // this fires when the component is initialized
         this.menuItems = [{
-            label: 'Home',
-            url: 'https://www.google.com'
+            label: 'Donkey Kong',
+            url: '/donkeykong'
         },
         {
-            label: 'About',
-            url: '/temp'
+            label: 'Halo',
+            url: '/halo'
         },
         {
-            label: 'Portfolio',
-            url: '/temp2'
-        }
-    ]
+            label: 'Zelda',
+            url: '/zelda'
+        },
+        {
+            label: 'Sim City',
+            url: '/simcity'
+        },
+        {
+            label: '',
+            url:'/'
+        }]
     }
 
-    ngOnDestroy(): void {
-        throw new Error("Method not implemented");
-    }
 }

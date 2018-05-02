@@ -6,9 +6,10 @@ nav {
     border-bottom: 1px solid black;
     padding-top: 1px;
     justify-content: space-between;
+    font-family: 'Libre Franklin', sans-serif;
+
+
     ul {
-
-
     .list-wrapper {
         display: flex;
     }
@@ -16,8 +17,8 @@ nav {
     flex-direction: row;
     // justify-content: flex-end;
         li {
-            padding-left: 5px;
-            padding-right: 5px;
+            padding-left: 7px;
+            padding-right: 7px;
             a {
                 color: #A3A3A3;
                 text-decoration: none;

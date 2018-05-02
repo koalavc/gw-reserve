@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+$gray: #A9a9a9;
 
 body {
   margin: 0;
-  font-family: 'Playfair Display',serif;
-  background-color: #0B6AD4
+  font-family: 'Helvetica', serif; // background-color: #0B6AD4;
+  background-image: url(./assets/background-blur.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
 }
