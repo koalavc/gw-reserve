@@ -1,76 +1,33 @@
 import { NgModule } from '@angular/core'; //NgModule supplys metadata / gives angular information about 
-import { RouterModule, Route } from '@angular/router';
 import { BrowserModule } from "@angular/platform-browser";
 
+import { AppRoutingModule, RoutedComponents } from "./app.routing.module";
+import { RoomModule } from "./components/room/room.module";
+import { NavigationComponent } from "./components/navigation/navigation.component";
+import { LoginComponent } from "./components/login/login.component";
 import { AppComponent } from "./app.component";
-import { LoginComponent } from "./login/login.component";
-import { WelcomeComponent } from "./welcome/welcome.component";
-import { NavigationComponent } from "./navigation/navigation.component";
-import { AboutComponent } from './about/about.component';
-import { SimCityComponent } from "./simcity/simcity.component";
-import { ZeldaComponent } from "./zelda/zelda.component";
-import { HaloComponent } from "./halo/halo.component";
-import { DonkeyKongComponent } from "./donkeykong/donkeykong.component";
 
-const routes: Route[] = [
-    {
-        component: DonkeyKongComponent,
-        path: "donkeykong"
-    },
-    {
-        component: SimCityComponent,
-        path: "simcity"
-    },
-    {
-        component: ZeldaComponent,
-        path: "zelda"
-    },
-    {
-        component: HaloComponent,
-        path: "halo"
-    },
-    {
-        component: AppComponent,
-        path: "*"
-    }
-    // {
-    //     path: "",
-    //     redirectTo: AppComponent,
-    //     pathMatch: "full" //
-    // }
-    // {
-    //     component: WelcomeComponent,
-    //     path: ""
-    // },
-    // {
-    //     path: "*",
-    //     component: NotFoundComponent
-    // }
-];
+import { RoomService } from "../service/room.service";
+// import { NavigationComponent } from './components/navigation/navigation.component';
+// import { WelcomeComponent } from './components/welcome/welcome.component';
+// import { LoginComponent } from "./components/login/login.component";
+// import { FourOhFourComponent } from "./components/404/fourohfour.component";
+
 
 @NgModule({
-    // configuration module
-    declarations: [
-        AppComponent, //telling angular about the comopnent
-        LoginComponent,
-        WelcomeComponent,
-        NavigationComponent,
-        AboutComponent,
-        SimCityComponent,
-        ZeldaComponent,
-        HaloComponent,
-        DonkeyKongComponent
-    ],
-    imports: [
-        BrowserModule,
-        RouterModule.forRoot(routes)
-    ],
+  // configuration module
+//   declartions only components
+  declarations: [
+    AppComponent, //telling angular about the comopnent
+    RoutedComponents,
+    NavigationComponent,
+    LoginComponent
+  ],
+//   modules only imprts
+  imports: [BrowserModule,RoomModule, AppRoutingModule ],
+  providers: [RoomService],
 
-    // choosing the component that boots
-    bootstrap: [
-        AppComponent 
-    ]
+  // choosing the component that boots
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-
-}
+export class AppModule {}
