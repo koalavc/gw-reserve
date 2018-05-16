@@ -1,0 +1,25 @@
+.container {
+    width: 100%;
+    height: 500px;
+    // margin-top: 10%;
+    background-color: #bfbfbf;
+    display: grid;
+    grid: {
+        template-columns: 1fr 1fr;
+        // template-areas: 'left right';
+    }
+    
+    .container-left {
+        display: grid;
+        grid: {
+            template-areas: left;
+        }
+    }
+
+    .container-right {
+        display: grid;
+        grid: {
+            template-areas: right;
+        }
+    }
+}

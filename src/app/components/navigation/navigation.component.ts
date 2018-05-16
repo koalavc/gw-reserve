@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { INavigationItem } from "./../../../interfaces/INavigationItem";
 import { RoomService } from "../../../service/room.service";
+import { IRoom } from "../../../interfaces/IRoom";
+
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'gw-navigation',
@@ -34,15 +37,38 @@ export class NavigationComponent implements OnInit{
 
         console.log(this._roomService.rooms);
 
-        const roomItems: INavigationItem[] = this._roomService.rooms.map(room => {
-            return {
-                label: room.title,
-                url: "room/" + room.id
-            };
-        });
+         this._roomService.rooms 
+            .pipe( //send data down to compare
+                map((roomsList: IRoom[])=> { //call map
+                    console.log('rxjs map roomsList: ', roomsList)
+                    const navItems:INavigationItem[] = roomsList.map(eachRoom => { //passing an array of IRooms
+                        console.log('Each rooms: ', eachRoom);
+                        return { 
+                            label: eachRoom.title,
+                            url: "room/" + eachRoom.id
+                        };
+                    })
+                    console.log('navItems: ', navItems);
+                    return navItems; //return navItems
+                }) // end map
+            ) // end pipe
+            .subscribe(mappedResponse => {
+                console.log('Res: ', mappedResponse);
+                mappedResponse.forEach(roomItem => {
+                    console.log('Room: ', roomItem);
+                    this.menuItems.push(roomItem)}
+                            )
+                        }
+                    );
+            
+        // map(room => {
+        //     return {
+        //         label: room.title,
+        //         url: "room/" + room.id
+        //     };
+        // });
 
-        roomItems.forEach(roomItem => this.menuItems.push(roomItem));
+        // roomItems.forEach(roomItem => this.menuItems.push(roomItem));
 
     }
-
 }
