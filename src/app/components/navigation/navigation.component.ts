@@ -17,6 +17,7 @@ import { map } from 'rxjs/operators';
 export class NavigationComponent implements OnInit{
     // public navigationComp: string = 'Welcome to the navigation component';
     public menuItems: INavigationItem[];
+    public initMenuItems: INavigationItem[];
 
 // when u inject something u need constructor
     constructor(private _roomService: RoomService, private _router: Router ){}
@@ -26,7 +27,7 @@ export class NavigationComponent implements OnInit{
         // console.log(this._roomService);
         
 
-        this.menuItems = [{
+        this.initMenuItems = [{
             label: 'Welcome',
             url: 'welcome'
         },
@@ -40,6 +41,7 @@ export class NavigationComponent implements OnInit{
          this._roomService.rooms 
             .pipe( //send data down to compare
                 map((roomsList: IRoom[])=> { //call map
+                    this.menuItems = [];
                     console.log('rxjs map roomsList: ', roomsList)
                     const navItems:INavigationItem[] = roomsList.map(eachRoom => { //passing an array of IRooms
                         console.log('Each rooms: ', eachRoom);
@@ -54,10 +56,11 @@ export class NavigationComponent implements OnInit{
             ) // end pipe
             .subscribe(mappedResponse => {
                 console.log('Res: ', mappedResponse);
-                mappedResponse.forEach(roomItem => {
-                    console.log('Room: ', roomItem);
-                    this.menuItems.push(roomItem)}
-                            )
+                this.menuItems = this.initMenuItems.concat(mappedResponse);
+                // mappedResponse.forEach(roomItem => {
+                //     console.log('Room: ', roomItem);
+                //     this.menuItems.push(roomItem)}
+                //             )
                         }
                     );
             

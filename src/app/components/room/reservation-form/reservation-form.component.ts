@@ -53,13 +53,13 @@ export class ReservationFormComponent implements OnInit {
     this.roomId = id;
   }
 
-  public onSubmit(reservationValues: IReservation) {
+  public onSubmit(reservation: IReservation) {
     // return this._roomService
     //   .writeRoomReservation(this.roomId, reservationValues)
     //   .then(() =>
     //     this._router.navigate(["../list"], { relativeTo: this._activatedRoute })
     //   );
-    return this._roomService.writeRoomReservation();
+    return this._roomService.writeRoomReservation(this.roomId, reservation).then(writtenObject => console.log("it's written"));
   }
 
   private _getDefaultStartDate() {

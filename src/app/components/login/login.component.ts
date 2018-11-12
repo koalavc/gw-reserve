@@ -1,8 +1,11 @@
 import * as firebase from "firebase";
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 // import { ActivatedRoute } from "@angular/router";
 import { AngularFireAuth } from "angularfire2/auth";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs/Observable"; 
+import { Router } from "@angular/router";
+
+import { LoginService } from "../../../service/login.service";
 
 @Component({
   selector: "gw-login",
@@ -12,28 +15,38 @@ import { Observable } from "rxjs/Observable";
   ]
 
 })
-export class LoginComponent {
+export class LoginComponent{
 
-  public userObservable: Observable<firebase.User>
+  // public userObservable: Observable<firebase.User>
+  public loggedInUser;
   
-  constructor(private _auth: AngularFireAuth){
+  constructor(private _loginService: LoginService){
+    this._loginService.getLoggedInUser()
+      .map(user => {
+        if(!user) {
+          return
+        };
 
+        return {
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        };
+      })
+      
+      .subscribe(user => {
+        this.loggedInUser = user;
+        console.log('logged in user ', this.loggedInUser);
+      })
   }
 
-  public ngOnInit(){
-    this.userObservable = this._auth.authState;
-
-    this.userObservable.subscribe(user => console.log(user));
+  public login() {
+    this._loginService.login();
+    this.loggedInUser = console.log('#########logged in');
   }
 
-  public login(event){
-    // console.log('the yee old');
-    this._auth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-
-  }
-
-  public logout(event){
-    this._auth.auth.signOut();
+  public logout(){
+    this._loginService.logout();
+    this.loggedInUser = console.log('#########logged out');
   }
 }
 

@@ -1,4 +1,9 @@
 <div>
-    <button (click)="login($event)">Login</button>
-    <button (click)="logout($event)">Logout</button>
+    <button [disabled]="loggedInUser" (click)="login()">Login</button>
+    <button [disabled]="!loggedInUser" (click)="logout()">Logout</button>
+    
+</div>
+<div class="setSpan" *ngIf="loggedInUser">
+    <p>Welcome {{loggedInUser.displayName}}</p>
+    <img class="resizeTheFuckingPhoto" [src]="loggedInUser.photoURL"> 
 </div>

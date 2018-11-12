@@ -16,6 +16,8 @@ import { AppComponent } from "./app.component";
 import { environment } from "./../environments/environment";
 
 import { RoomService } from "../service/room.service";
+import { LoginService } from '../service/login.service';
+import { LoginGuardService } from '../service/login.guard.service';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { RoomService } from "../service/room.service";
 
   providers: [
     AngularFireAuth,
-    RoomService
+    RoomService,
+    LoginService,
+    LoginGuardService
   ],
 
   // choosing the component that boots

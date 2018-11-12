@@ -4,12 +4,14 @@ import { Route, RouterModule } from "@angular/router";
 import { RoomComponent } from "../room/room.component";
 import { ReservationFormComponent } from "../room/reservation-form/reservation-form.component";
 import { ReservationListComponent } from "../room/reservation-list/reservation-list.component";
+import { LoginGuardService } from "../../../service/login.guard.service";
 
 
 const routes: Route[] = [
   {
     path: "room/:id",
     component: RoomComponent,
+    canActivate: [LoginGuardService],
     children: [
         {
             path: "form",
@@ -21,7 +23,7 @@ const routes: Route[] = [
         },
         {
             path: "**",
-            redirectTo: 'list',
+            redirectTo: 'form',
             pathMatch: 'full'
         }
     ]

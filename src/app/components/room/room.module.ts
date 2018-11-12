@@ -4,10 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { RoomRoutingModule, RoutedComponents } from "./room.routing.module";
 
 import { RoomService } from "./../../../service/room.service";
+import { LoginGuardService } from "../../../service/login.guard.service";
 
 @NgModule({
-  imports: [FormsModule,RoomRoutingModule, CommonModule],
-  providers: [RoomService],
+  imports: [
+    FormsModule,
+    RoomRoutingModule, 
+    CommonModule],
+  providers: [RoomService, LoginGuardService],
   declarations: [RoutedComponents]
 })
 export class RoomModule {}
